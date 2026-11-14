@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <radialGradient id="coinGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffe259"/>
+      <stop offset="80%" stop-color="#ffa751"/>
+      <stop offset="100%" stop-color="#d47a20"/>
+    </radialGradient>
+  </defs>
+  <circle cx="16" cy="16" r="14" fill="url(#coinGrad)" stroke="#fff" stroke-width="1.5"/>
+  <circle cx="16" cy="16" r="10" fill="none" stroke="#ffe259" stroke-width="1.2" stroke-dasharray="3,2"/>
+  <polygon points="16,8 19,16 16,24 13,16" fill="#ffffff" opacity="0.8"/>
+</svg>

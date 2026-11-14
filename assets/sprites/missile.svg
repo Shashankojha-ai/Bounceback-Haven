@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32" width="64" height="32">
+  <defs>
+    <linearGradient id="rocketGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff416c"/>
+      <stop offset="100%" stop-color="#ff4b2b"/>
+    </linearGradient>
+  </defs>
+  <!-- Flame -->
+  <polygon points="46,12 62,16 46,20" fill="#ffa751"/>
+  <!-- Body -->
+  <path d="M12 16 L20 8 L46 8 L46 24 L20 24 Z" fill="url(#rocketGrad)" stroke="#fff" stroke-width="1.2"/>
+  <!-- Fins -->
+  <polygon points="40,8 46,2 46,8" fill="#d4145a"/>
+  <polygon points="40,24 46,30 46,24" fill="#d4145a"/>
+  <!-- Nose cone cap -->
+  <circle cx="14" cy="16" r="3" fill="#ffe259"/>
+</svg>
