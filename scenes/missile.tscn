@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/missile.gd" id="1_missile"]
+[ext_resource type="Texture2D" path="res://assets/sprites/hazard_warning.svg" id="2_warning_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/missile.svg" id="3_rocket_tex"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_missile"]
+radius = 8.0
+height = 42.0
+
+[node name="Missile" type="Area2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_missile")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_missile")
+
+[node name="WarningSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_warning_tex")
+
+[node name="RocketSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_rocket_tex")

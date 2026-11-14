@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/laser_obstacle.gd" id="1_laser"]
+[ext_resource type="Texture2D" path="res://assets/sprites/laser_emitter.svg" id="2_emitter_tex"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_laser"]
+radius = 8.0
+height = 140.0
+
+[node name="LaserObstacle" type="Area2D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_laser")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_laser")
+
+[node name="EmitterLeft" type="Sprite2D" parent="."]
+position = Vector2(-70, 0)
+texture = ExtResource("2_emitter_tex")
+
+[node name="EmitterRight" type="Sprite2D" parent="."]
+position = Vector2(70, 0)
+texture = ExtResource("2_emitter_tex")
