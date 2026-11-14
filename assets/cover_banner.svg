@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a10"/>
+      <stop offset="50%" stop-color="#0d1422"/>
+      <stop offset="100%" stop-color="#141c2c"/>
+    </linearGradient>
+
+    <radialGradient id="cyanGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#00c6ff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0072ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="pinkGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff0844" stop-opacity="0.3"/>
+      <stop offset="70%" stop-color="#ff4e50" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ff0844" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#e0f7ff"/>
+      <stop offset="70%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#0091ea"/>
+    </linearGradient>
+
+    <linearGradient id="subtitleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#ff9ff3"/>
+      <stop offset="100%" stop-color="#feca57"/>
+    </linearGradient>
+
+    <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="shockwaveBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- 1. Background Canvas -->
+  <rect width="1280" height="640" fill="url(#bgGrad)"/>
+
+  <!-- Glowing Ambiance Orbs -->
+  <circle cx="640" cy="340" r="420" fill="url(#cyanGlow)"/>
+  <circle cx="280" cy="180" r="300" fill="url(#pinkGlow)"/>
+  <circle cx="1020" cy="460" r="340" fill="url(#cyanGlow)"/>
+
+  <!-- 2. Cyberpunk Grid Lines -->
+  <g stroke="#00e5ff" stroke-opacity="0.08" stroke-width="1.2">
+    <!-- Horizontal lines -->
+    <line x1="0" y1="120" x2="1280" y2="120"/>
+    <line x1="0" y1="200" x2="1280" y2="200"/>
+    <line x1="0" y1="280" x2="1280" y2="280"/>
+    <line x1="0" y1="360" x2="1280" y2="360"/>
+    <line x1="0" y1="440" x2="1280" y2="440"/>
+    <line x1="0" y1="520" x2="1280" y2="520"/>
+    <!-- Vertical lines -->
+    <line x1="160" y1="60" x2="160" y2="580"/>
+    <line x1="320" y1="60" x2="320" y2="580"/>
+    <line x1="480" y1="60" x2="480" y2="580"/>
+    <line x1="640" y1="60" x2="640" y2="580"/>
+    <line x1="800" y1="60" x2="800" y2="580"/>
+    <line x1="960" y1="60" x2="960" y2="580"/>
+    <line x1="1120" y1="60" x2="1120" y2="580"/>
+  </g>
+
+  <!-- 3. Top and Bottom Neon Boundary Rails -->
+  <!-- Top Rail -->
+  <rect x="0" y="0" width="1280" height="48" fill="#090d14"/>
+  <line x1="0" y1="48" x2="1280" y2="48" stroke="#00e5ff" stroke-width="3" filter="url(#neonGlow)"/>
+  <!-- Top Chevron Pattern -->
+  <g stroke="#00e5ff" stroke-opacity="0.25" stroke-width="6">
+    <line x1="100" y1="0" x2="140" y2="48"/>
+    <line x1="260" y1="0" x2="300" y2="48"/>
+    <line x1="420" y1="0" x2="460" y2="48"/>
+    <line x1="580" y1="0" x2="620" y2="48"/>
+    <line x1="740" y1="0" x2="780" y2="48"/>
+    <line x1="900" y1="0" x2="940" y2="48"/>
+    <line x1="1060" y1="0" x2="1100" y2="48"/>
+    <line x1="1220" y1="0" x2="1260" y2="48"/>
+  </g>
+
+  <!-- Bottom Rail -->
+  <rect x="0" y="592" width="1280" height="48" fill="#090d14"/>
+  <line x1="0" y1="592" x2="1280" y2="592" stroke="#00ff88" stroke-width="3.5" filter="url(#neonGlow)"/>
+  <!-- Bottom Chevron Pattern -->
+  <g stroke="#00ff88" stroke-opacity="0.25" stroke-width="6">
+    <line x1="80" y1="592" x2="120" y2="640"/>
+    <line x1="240" y1="592" x2="280" y2="640"/>
+    <line x1="400" y1="592" x2="440" y2="640"/>
+    <line x1="560" y1="592" x2="600" y2="640"/>
+    <line x1="720" y1="592" x2="760" y2="640"/>
+    <line x1="880" y1="592" x2="920" y2="640"/>
+    <line x1="1040" y1="592" x2="1080" y2="640"/>
+    <line x1="1200" y1="592" x2="1240" y2="640"/>
+  </g>
+
+  <!-- 4. Background Hazards & Energy Elements -->
+  <!-- Diagonal Electric Laser Beam -->
+  <g opacity="0.85">
+    <line x1="120" y1="360" x2="260" y2="220" stroke="#ff0844" stroke-width="14" stroke-opacity="0.3" filter="url(#neonGlow)"/>
+    <line x1="120" y1="360" x2="260" y2="220" stroke="#ff4e50" stroke-width="6"/>
+    <line x1="120" y1="360" x2="260" y2="220" stroke="#ffffff" stroke-width="2"/>
+    <!-- Laser Emitter Nodes -->
+    <circle cx="120" cy="360" r="14" fill="#1b2432" stroke="#ff0844" stroke-width="2"/>
+    <circle cx="120" cy="360" r="6" fill="#ff0844"/>
+    <circle cx="260" cy="220" r="14" fill="#1b2432" stroke="#ff0844" stroke-width="2"/>
+    <circle cx="260" cy="220" r="6" fill="#ff0844"/>
+  </g>
+
+  <!-- Floating Golden Energy Coins -->
+  <g transform="translate(980, 210) scale(1.3)" filter="url(#neonGlow)">
+    <circle cx="0" cy="0" r="18" fill="#ffa751" stroke="#fff" stroke-width="2"/>
+    <circle cx="0" cy="0" r="12" fill="#ffe259"/>
+    <polygon points="0,-8 5,0 0,8 -5,0" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g transform="translate(1040, 160) scale(1.0)" opacity="0.8">
+    <circle cx="0" cy="0" r="16" fill="#ffa751" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="10" fill="#ffe259"/>
+  </g>
+  <g transform="translate(1100, 120) scale(0.8)" opacity="0.65">
+    <circle cx="0" cy="0" r="16" fill="#ffa751" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="10" fill="#ffe259"/>
+  </g>
+
+  <!-- High-Speed Rocket Hazard on Right -->
+  <g transform="translate(1140, 420) scale(1.4)" filter="url(#neonGlow)">
+    <!-- Rocket Thruster Trail -->
+    <polygon points="30,-4 58,0 30,4" fill="#ff4e50"/>
+    <polygon points="30,-2 46,0 30,2" fill="#ffe259"/>
+    <!-- Rocket Shell -->
+    <path d="M-20,0 L-6,-8 L28,-8 L28,8 L-6,8 Z" fill="#e6194b" stroke="#ffffff" stroke-width="1.2"/>
+    <circle cx="-8" cy="0" r="3" fill="#ffe259"/>
+  </g>
+
+  <!-- 5. Central Hero Showcase: Kinetic Bumper & Bouncy-Bot -->
+
+  <!-- Shockwave Ripple Rings -->
+  <ellipse cx="640" cy="460" rx="140" ry="32" fill="none" stroke="#00f2fe" stroke-width="3" opacity="0.75" filter="url(#shockwaveBlur)"/>
+  <ellipse cx="640" cy="460" rx="210" ry="46" fill="none" stroke="#00f2fe" stroke-width="1.5" opacity="0.4"/>
+  <ellipse cx="640" cy="460" rx="270" ry="58" fill="none" stroke="#00e5ff" stroke-width="1" opacity="0.2"/>
+
+  <!-- Kinetic Bumper Hexagon -->
+  <g transform="translate(640, 470) scale(1.6)" filter="url(#neonGlow)">
+    <polygon points="0,-24 24,-12 24,12 0,24 -24,12 -24,-12" fill="#0c1824" stroke="#00f2fe" stroke-width="3"/>
+    <circle cx="0" cy="0" r="15" fill="#00c6ff" fill-opacity="0.2" stroke="#00f2fe" stroke-width="2"/>
+    <polyline points="-6,-7 4,0 -6,7" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- BOUNCY-BOT (Dynamic Action Jump) -->
+  <g transform="translate(640, 345) scale(2.4)" filter="url(#neonGlow)">
+    <!-- Jetpack Thruster Flame Eruption -->
+    <polygon points="-8,18 0,38 8,18" fill="#ff4e50" opacity="0.9"/>
+    <polygon points="-5,18 0,28 5,18" fill="#ffa751"/>
+    <polygon points="-2,18 0,22 2,18" fill="#ffffff"/>
+
+    <!-- Thruster Nozzle -->
+    <path d="M-9,14 L9,14 L6,20 L-6,20 Z" fill="#243044" stroke="#4a5d7c" stroke-width="1.2"/>
+
+    <!-- Main Spherical Body -->
+    <circle cx="0" cy="0" r="22" fill="#141c2c" stroke="#00f2fe" stroke-width="2.2"/>
+    <circle cx="-5" cy="-6" r="14" fill="#223048" opacity="0.7"/>
+    <circle cx="-8" cy="-9" r="6" fill="#3a5078" opacity="0.8"/>
+
+    <!-- Antenna Crest -->
+    <line x1="0" y1="-20" x2="0" y2="-28" stroke="#3a5078" stroke-width="2.5"/>
+    <circle cx="0" cy="-29" r="3.5" fill="#00f2fe"/>
+
+    <!-- Cyber Visor Eye -->
+    <rect x="-3" y="-8" width="19" height="12" rx="3.5" fill="#070e17" stroke="#00f2fe" stroke-width="1.5"/>
+    <circle cx="7" cy="-2" r="3.8" fill="#00f2fe"/>
+    <circle cx="8" cy="-3" r="1.3" fill="#ffffff"/>
+  </g>
+
+  <!-- 6. Bold Title Typography & Badges -->
+  <g transform="translate(640, 140)" text-anchor="middle">
+    <!-- Drop Shadow Glow -->
+    <text x="0" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="82" font-weight="900" letter-spacing="8" fill="#003566" opacity="0.8" filter="url(#neonGlow)">BOUNCEBACK</text>
+
+    <!-- Main Title Text -->
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="82" font-weight="900" letter-spacing="8" fill="url(#titleGrad)">BOUNCEBACK</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="6" fill="url(#subtitleGrad)">TURN HAZARDS INTO MOMENTUM</text>
+  </g>
+
+  <!-- Feature Badges -->
+  <g transform="translate(640, 215)" text-anchor="middle">
+    <!-- Badge 1: Godot 4 -->
+    <rect x="-240" y="-14" width="130" height="28" rx="14" fill="#0a1826" stroke="#00e5ff" stroke-width="1.2"/>
+    <text x="-175" y="4" font-family="sans-serif" font-size="12" font-weight="700" fill="#00e5ff" letter-spacing="1">GODOT 4.x</text>
+
+    <!-- Badge 2: Endless Runner -->
+    <rect x="-90" y="-14" width="180" height="28" rx="14" fill="#1b1226" stroke="#ff79c6" stroke-width="1.2"/>
+    <text x="0" y="4" font-family="sans-serif" font-size="12" font-weight="700" fill="#ff79c6" letter-spacing="1">ENDLESS RUNNER</text>
+
+    <!-- Badge 3: Kinetic Combo -->
+    <rect x="110" y="-14" width="150" height="28" rx="14" fill="#181e10" stroke="#00ff88" stroke-width="1.2"/>
+    <text x="185" y="4" font-family="sans-serif" font-size="12" font-weight="700" fill="#00ff88" letter-spacing="1">5X COMBO SYSTEM</text>
+  </g>
+</svg>

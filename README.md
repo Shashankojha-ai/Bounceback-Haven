@@ -1,5 +1,9 @@
 # Bounceback
 
+<p align="center">
+  <img src="assets/cover_banner.svg" alt="Bounceback Cover Banner" width="100%">
+</p>
+
 > A high-speed 2D endless side-scroller built in Godot 4 that turns collision hazards into kinetic momentum.
 
 ---

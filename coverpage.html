@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOUNCEBACK — Turn Hazards into Momentum</title>
+  <meta name="description" content="Official cover page and showcase for Bounceback, a high-speed 2D endless side-scroller built in Godot 4.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a10;
+      --card-bg: rgba(18, 24, 38, 0.7);
+      --border: rgba(0, 242, 254, 0.2);
+      --cyan: #00f2fe;
+      --cyan-glow: rgba(0, 242, 254, 0.4);
+      --pink: #ff0844;
+      --pink-glow: rgba(255, 8, 68, 0.4);
+      --gold: #feca57;
+      --green: #00ff88;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Ambient Background Glows */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 8, 68, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 80% 30%, rgba(0, 242, 254, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 136, 0.08) 0%, transparent 55%);
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #00f2fe, #0072ff);
+      box-shadow: 0 0 16px var(--cyan-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), #0072ff);
+      color: #070a10;
+      box-shadow: 0 0 24px var(--cyan-glow);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px rgba(0, 242, 254, 0.6);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .pill-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(52px, 8vw, 100px);
+      font-weight: 900;
+      letter-spacing: 4px;
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #ffffff 20%, #a5f3fc 70%, #00b4d8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 32px rgba(0, 242, 254, 0.3));
+    }
+
+    .hero-tagline {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 600;
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 12px var(--pink-glow));
+    }
+
+    .hero-desc {
+      max-width: 680px;
+      margin: 0 auto 36px;
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    /* Cover Art Banner Card */
+    .banner-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      box-shadow: 
+        0 0 40px rgba(0, 242, 254, 0.2),
+        0 24px 60px rgba(0, 0, 0, 0.7);
+      background: #090d14;
+      margin-bottom: 80px;
+    }
+
+    .banner-wrapper img, .banner-wrapper svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .banner-wrapper:hover img, .banner-wrapper:hover svg {
+      transform: scale(1.01);
+    }
+
+    /* Feature Grid */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px 24px;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan);
+      box-shadow: 0 12px 32px rgba(0, 242, 254, 0.15);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: rgba(0, 242, 254, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+    }
+
+    .feature-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Controls Showcase */
+    .controls-panel {
+      background: linear-gradient(135deg, rgba(14, 20, 32, 0.8), rgba(9, 13, 20, 0.8));
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .keys-container {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .key-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: #141c2c;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 4px 0 rgba(0, 242, 254, 0.2);
+    }
+
+    .key-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .key-action {
+      font-size: 12px;
+      color: var(--cyan);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-bg"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="container">
+    <!-- Navbar -->
+    <nav>
+      <a href="#" class="logo">
+        <div class="logo-badge">⚡</div>
+        <span>BOUNCEBACK</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://github.com/Shashankojha-ai/Bounceback-Haven" target="_blank" class="btn btn-outline">
+          ⭐ View GitHub
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="pill-badge">
+        <span class="dot"></span>
+        Godot 4 2D Endless Runner • Hackathon Edition
+      </div>
+      <h1 class="hero-title">BOUNCEBACK</h1>
+      <p class="hero-tagline">Turn Hazards into Momentum</p>
+      <p class="hero-desc">
+        In traditional endless runners, collisions end your run. In <strong>Bounceback</strong>, touching the floor, ceiling, or kinetic bumpers squashes Bouncy-Bot and converts impact force into high-speed rebound combos!
+      </p>
+
+      <div class="hero-cta">
+        <a href="https://github.com/Shashankojha-ai/Bounceback-Haven" target="_blank" class="btn btn-primary">
+          🚀 View Source on GitHub
+        </a>
+        <a href="#mechanics" class="btn btn-outline">
+          🎮 Explore Mechanics
+        </a>
+      </div>
+
+      <!-- Main Visual Cover Banner -->
+      <div class="banner-wrapper">
+        <img src="assets/cover_banner.svg" alt="Bounceback Official Game Cover Banner">
+      </div>
+    </header>
+
+    <!-- Core Mechanics Section -->
+    <section id="mechanics">
+      <div class="section-header">
+        <div class="pill-badge">Game Architecture</div>
+        <h2 class="section-title">The "Bounceback" Innovation</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+          Built from the ground up to subvert traditional platformer and runner tropes.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title">Elastic Rebound</h3>
+          <p class="feature-desc">
+            Hitting boundaries triggers procedural squash & stretch with immediate upward recoil (<code style="color: var(--cyan);">-520 px/s</code>) instead of flat grounding.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔥</div>
+          <h3 class="feature-title">5× Bounce Combo</h3>
+          <p class="feature-desc">
+            Chaining consecutive rebounds before your combo timer decays stacks multiplier rewards up to <strong>5×</strong> on all collected coins and bumpers.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Kinetic Bumpers</h3>
+          <p class="feature-desc">
+            High-tech neon hexagonal bumpers that safely launch Bouncy-Bot away from danger zones while granting +150 bonus score.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">Jet Thruster Physics</h3>
+          <p class="feature-desc">
+            Hold Space or Left Click to fire the cyber-orb's downward jet nozzle with dynamic particle trails and pitch tilt interpolation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+      <div>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; margin-bottom: 8px;">Intuitive Controls</h3>
+        <p style="color: var(--text-muted); font-size: 15px;">One-hand or mouse gameplay designed for fast arcade reflexes.</p>
+      </div>
+      <div class="keys-container">
+        <div class="key-badge">
+          <span class="key-name">SPACEBAR</span>
+          <span class="key-action">Thrust Upward</span>
+        </div>
+        <div class="key-badge">
+          <span class="key-name">LEFT CLICK</span>
+          <span class="key-action">Thrust / Tap</span>
+        </div>
+        <div class="key-badge">
+          <span class="key-name">RELEASE</span>
+          <span class="key-action">Gravity Fall</span>
+        </div>
+        <div class="key-badge">
+          <span class="key-name">COLLIDE</span>
+          <span class="key-action">Auto Bounce</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Run Terminal Card -->
+    <div style="background: rgba(14, 20, 32, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 32px; margin-bottom: 80px; text-align: center;">
+      <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin-bottom: 12px;">Clone & Play in Godot 4</h3>
+      <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 20px;">Open in Godot 4.3+ and press F5 to play.</p>
+      <div style="display: inline-block; background: #070a10; border: 1px solid rgba(0, 242, 254, 0.3); border-radius: 8px; padding: 12px 24px; font-family: monospace; color: var(--cyan); font-size: 14px;">
+        git clone https://github.com/Shashankojha-ai/Bounceback-Haven.git
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Created by <strong>Shashank Ojha</strong> • Powered by <strong>Godot Engine 4.x</strong> • MIT License</p>
+      <p style="margin-top: 8px;"><a href="https://github.com/Shashankojha-ai/Bounceback-Haven" target="_blank">github.com/Shashankojha-ai/Bounceback-Haven</a></p>
+    </footer>
+  </div>
+</body>
+</html>
