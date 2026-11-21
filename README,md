@@ -1,0 +1,36 @@
+# Bounceback-Haven
+
+An arcade-style game built with **Godot 4** featuring fast-paced bounce mechanics, a cyber HUD, combo multiplier badges, and dynamic difficulty ramping.
+
+## Features
+- **Tuned Bounce Physics:** Responsive velocity constants and dynamic bounce mechanics.
+- **Cyber HUD & Scoring:** Real-time combo multiplier badges and visual feedback.
+- **Dynamic Difficulty:** Progressive difficulty ramp as your score increases.
+- **Web Playable:** Packaged as an HTML5 build ready for browser play (itch.io).
+
+## Project Structure
+- `assets/` – Game sprites, audio, and visual assets
+- `scenes/` – Godot scene files (`.tscn`)
+- `scripts/` – GDScript gameplay and UI logic
+- `web/` & `dist/` – HTML5 web export and distribution builds
+
+## Getting Started
+
+### Prerequisites
+- [Godot Engine 4.x](https://godotengine.org)
+
+### Running Locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com
+   ```
+2. Open **Godot 4** and click **Import**.
+3. Select the `project.godot` file inside the cloned folder and press **F5** to play.
+
+## Contributing
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -m "feat: add your feature"`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.
+
